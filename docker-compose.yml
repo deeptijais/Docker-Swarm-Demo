@@ -1,0 +1,23 @@
+services:
+  web:
+    image: deeptiijais/docker-compose-demo:swarm2023
+    deploy:
+      replicas:5
+    ports:
+      - "8000:5000"
+    networks:
+      - counter-net
+    volumes:
+      - type: volume
+        source: counter-vol
+        target: /code
+  redis:
+    image: "redis:alpine"
+    networks:
+      counter-net:
+
+networks:
+  counter-net:
+
+volumes:
+  counter-vol:
